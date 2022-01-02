@@ -46,7 +46,6 @@ fi
 # https://go-acme.github.io/lego/usage/cli/
 /usr/local/bin/lego \
     --accept-tos \
-    --key-type "rsa4096" \
     --email "$EMAIL" \
     --dns "$DNS_PROVIDER" \
     "${DOMAINS[@]}" \
