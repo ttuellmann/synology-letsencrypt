@@ -33,38 +33,11 @@ install_script() {
 }
 
 
-install_configuration() {
-    local dir="/usr/local/etc/synology-letsencrypt"
-    local env="$dir/env"
-
-    sudo mkdir -p "$dir"
-    permissions 700 "$dir"
-
-    if [[ ! -s $env ]]; then
-        sudo tee "$env" > /dev/null <<EOF
-DOMAINS=(--domains "example.com" --domains "*.example.com")
-EMAIL="user@example.com"
-
-## Specify DNS Provider (this example is from https://go-acme.github.io/lego/dns/simply/)
-DNS_PROVIDER="simply"
-export SIMPLY_ACCOUNT_NAME=XXXXXXX
-export SIMPLY_API_KEY=XXXXXXXXXX
-export SIMPLY_PROPAGATION_TIMEOUT=1800
-export SIMPLY_POLLING_INTERVAL=30
-EOF
-    fi
-
-    permissions 600 "$env"
-    printf "installed: %s\n" "$env"
-}
-
-
 install() {
     install_lego
     install_script "synology-letsencrypt.sh"
     install_script "synology-letsencrypt-reload-services.sh"
     install_script "synology-letsencrypt-make-cert-id.sh"
-    install_configuration
 }
 
 install
