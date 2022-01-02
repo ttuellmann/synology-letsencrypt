@@ -26,7 +26,7 @@ install_script() {
     local name="$1"
     local path="/usr/local/bin/$name"
 
-    sudo curl -sSL -o "$path" "https://raw.githubusercontent.com/JessThrysoee/synology-letsencrypt/master/$name"
+    sudo curl -sSL -o "$path" "https://raw.githubusercontent.com/ttuellmann/synology-letsencrypt/master/$name"
 
     permissions 755 "$path"
     printf "installed: %s\n" "$path"
